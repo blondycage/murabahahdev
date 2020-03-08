@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.5",
+    "@material-ui/styles": "^4.9.0",
     "axios": "^0.18.1",
     "babel-polyfill": "^6.26.0",
     "concurrently": "^4.0.1",

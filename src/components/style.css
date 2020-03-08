@@ -30,7 +30,15 @@ h1 {
 	font-weight: bold;
 	margin: 0;
 }
-
+.social{
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+}
+.social>*{
+	font-size: 30px;
+	margin: 0 15px;
+}
 h2 {
 	text-align: center;
 }
@@ -66,6 +74,12 @@ button {
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
 }
+.shippingform{
+	display: flex;
+	flex-direction: column;
+	flex-basis: 400px;
+	margin-left: 15px;
+}
 
 button:active {
 	transform: scale(0.95);
@@ -80,17 +94,28 @@ button.ghost {
 	border-color: #FFFFFF;
 }
 
-form {
-	background-color: #FFFFFF;
-	display: flex;
+.form {
+	background-color: rgb(224, 224, 224);
+	
 	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	padding: 0 50px;
-	height: 100%;
-	text-align: center;
-}
 
+	flex-direction: column;
+	
+	
+	margin: 30px auto;
+	padding: 20px;
+	
+}
+.forms div{
+	
+	margin: 0 auto;
+}
+.centerdiv{
+	margin:0 auto
+}
+.persnal{
+	max-width: 500px;
+}
 input {
 	background-color: #eee;
 	border: none;
@@ -112,7 +137,17 @@ input {
 	margin: 0 auto;
 	margin-top: 150px;
 }
-
+.signin{
+	display: flex;
+	justify-content: center;
+}
+.signin>form{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+background-color: 	rgba(224, 224, 224, 0.322);
+min-width: 500px;
+}
 .form-container {
 	position: absolute;
 	top: 0;
@@ -237,7 +272,7 @@ input {
 	height: 40px;
 	width: 40px;
 }
-
+.centerdiv2{text-align: center;}
 footer {
     background-color: #222;
     color: #fff;
@@ -261,4 +296,11 @@ footer i {
 footer a {
     color: #3c97bf;
     text-decoration: none;
+}
+.centerdiv  a{
+	color: blue;
+	text-align: center;
+}
+.forms{
+	display: flex;
 }

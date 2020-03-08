@@ -27,8 +27,9 @@ const SIGN_IN_METHODS = [
 ];
 
 const AccountPage = ({ authUser }) => (
-  <div>
-    <h1>Account: {authUser.username}</h1>
+  <div style={{display:'flex',flexDirection:'column',justifyContent:'center',marginTop:'15vh'}}>
+    <h3>HI {authUser.firstname} {authUser.lastname}</h3>
+    <h4>this is where the user profile to be updated but you can see it knows whse account is logged in.you cn try logging with a new account and test it out</h4>
     <PasswordForgetForm />
     <PasswordChangeForm />
     

@@ -9,9 +9,17 @@ import * as ROUTES from '../../constants/routes';
 import '../../components/style.css'
 const SignInPage = () => (
   <div className='containerbody'>
-    <div>
-    <SignInForm />
+    <h1>SignIn</h1>
+    <div className='social'>
+   <SignInGoogle />
+  
+    <SignInFacebook />
+    <SignInTwitter />
     </div>
+    <SignInForm />
+   
+    
+   
   </div>
 );
 
@@ -19,7 +27,6 @@ const INITIAL_STATE = {
   email: '',
   password: '',
   error: null,
-  containerclass:''
 };
 
 const ERROR_CODE_ACCOUNT_EXISTS =
@@ -37,7 +44,6 @@ class SignInFormBase extends Component {
     super(props);
 
     this.state = { ...INITIAL_STATE };
-   
   }
 
   onSubmit = event => {
@@ -61,70 +67,36 @@ class SignInFormBase extends Component {
   };
 
   render() {
-    
-    const { email, password, error, containerclass } = this.state;
+    const { email, password, error } = this.state;
 
     const isInvalid = password === '' || email === '';
-    
-
-
-
-
-
 
     return (
-      <div className={`container ${containerclass} `} id="container" >
-	<div className="form-container sign-up-container">
-		<form action="#">
-			<h1>Create Account</h1>
-			<div className="social-container">
-				<a href="#" className="social"><i className="fa fa-facebook"></i></a>
-				<a href="#" className="social"><i className="fa fa-google"></i></a>
-				<a href="#" className="social"><i className="fa fa-twitter"></i></a>
-			</div>
-			<span>or use your email for registration</span>
-      <SignUpForm/>
-			
-		</form>
-	</div>
-	<div className="form-container sign-in-container">
-		<form onSubmit={this.onSubmit}>
-			<h1>Sign in</h1>
-			<div className="social-container">
-				<a href="#" className="social"><i className="fa fa-facebook"></i></a>
-				<a href="#" className="social"><i className="fa fa-google"></i></a>
-				<a href="#" className="social"><i className="fa fa-twitter"></i></a>
-			</div>
-			<span>or use your account</span>
-			<input type="email" name='email'placeholder="Email"  value={email}
-          onChange={this.onChange} />
-			<input type="password" placeholder="Password" name='password' value={password}
-          onChange={this.onChange}/>
-			<a href="#">Forgot your password?</a>
-			<button disabled={isInvalid} type="submit">Sign In</button>
-      {error && <p>{error.message}</p>}
-		</form>
-	</div>
-	<div className="overlay-container">
-		<div className="overlay">
-			<div className="overlay-panel overlay-left">
-				<h1>Welcome Back!</h1>
-				<p>To keep connected with us please login with your personal info</p>
-				<button className="ghost" id="signIn" onClick= {() => {
-	this.setState({ containerclass:"" })}}>Sign In</button>
-			</div>
-			<div className="overlay-panel overlay-right">
-				<h1>Hello, Friend!</h1>
-				<p>Enter your personal details and start journey with us</p>
-				<button className="ghost" id="signUp"  onClick= {() => {
-	this.setState({ containerclass:"right-panel-active" })}}>Sign Up</button>
-			</div>
-		</div>
-	</div>
-</div>
+      <div className='signin'>
+      <form onSubmit={this.onSubmit} >
+        <input
+          name="email"
+          value={email}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Email Address"
+        />
+        <input
+          name="password"
+          value={password}
+          onChange={this.onChange}
+          type="password"
+          placeholder="Password"
+        />
+        <button disabled={isInvalid} type="submit">
+          Sign In
+        </button>
 
-
-   
+        {error && <p>{error.message}</p>}
+        <PasswordForgetLink  className='centerdiv'/>
+    <SignUpLink   className='centerdiv'/>
+      </form>
+      </div>
     );
   }
 }
@@ -166,11 +138,10 @@ class SignInGoogleBase extends Component {
     const { error } = this.state;
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Google</button>
-
+      <div onClick={this.onSubmit}><i className="fa fa-google"></i>
+        
         {error && <p>{error.message}</p>}
-      </form>
+      </div>
     );
   }
 }
@@ -212,11 +183,10 @@ class SignInFacebookBase extends Component {
     const { error } = this.state;
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Facebook</button>
-
+      <div onClick={this.onSubmit}><i className="fa fa-facebook"></i>
+        
         {error && <p>{error.message}</p>}
-      </form>
+      </div>
     );
   }
 }
@@ -258,11 +228,10 @@ class SignInTwitterBase extends Component {
     const { error } = this.state;
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Twitter</button>
-
+     <div onClick={this.onSubmit}><i className="fa fa-twitter"></i>
+        
         {error && <p>{error.message}</p>}
-      </form>
+      </div>
     );
   }
 }

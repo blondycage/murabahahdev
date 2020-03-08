@@ -19,6 +19,14 @@ const INITIAL_STATE = {
   passwordTwo: '',
   isAdmin: false,
   error: null,
+  address: null,
+  firstname: '',
+  code: null,
+  state: '',
+  city: '',
+  province: '',
+  number: null,
+  lastname: ''
 };
 
 const ERROR_CODE_ACCOUNT_EXISTS = 'auth/email-already-in-use';
@@ -39,7 +47,20 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne, isAdmin } = this.state;
+    const {
+      username,
+      email,
+      passwordOne,
+      isAdmin,
+      address,
+      code,
+      state,
+      city,
+      province,
+      number,
+      firstname,
+      lastname
+    } = this.state;
     const roles = {};
 
     if (isAdmin) {
@@ -54,11 +75,19 @@ class SignUpFormBase extends Component {
           username,
           email,
           roles,
+          address,
+          code,
+          state,
+          city,
+          province,
+          number,
+      firstname,
+      lastname
         });
       })
-      .then(() => {
+      /*.then(() => {
         return this.props.firebase.doSendEmailVerification();
-      })
+      })*/
       .then(() => {
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
@@ -90,6 +119,14 @@ class SignUpFormBase extends Component {
       passwordTwo,
       isAdmin,
       error,
+      address,
+      code,
+      state,
+      city,
+      province,
+      number,
+      firstname,
+      lastname
     } = this.state;
 
     const isInvalid =
@@ -99,56 +136,120 @@ class SignUpFormBase extends Component {
       username === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
-        />
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <label>
-          Admin:
-          <input
-            name="isAdmin"
-            type="checkbox"
-            checked={isAdmin}
-            onChange={this.onChangeCheckbox}
-          />
-        </label>
-        <button disabled={isInvalid} type="submit">
-          Sign Up
-        </button>
+      <form onSubmit={this.onSubmit} className="form">
+        <div className="forms">
+          <div className="persnal">
+            <input
+              name="firstname"
+              value={firstname}
+              onChange={this.onChange}
+              type="text"
+              placeholder="First Name"
+              required
+            />
+            <input
+              name="lastname"
+              value={lastname}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Last Name"
+              required
+            />
+            <input
+              name="username"
+              value={username}
+              onChange={this.onChange}
+              type="text"
+              placeholder="userName"
+            />
+            <input
+              name="email"
+              value={email}
+              onChange={this.onChange}
+              type="text"
+              placeholder="Email Address"
+              required
+            />
+            <input
+              name="passwordOne"
+              value={passwordOne}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Password"
+              required
+            />
+            <input
+              name="passwordTwo"
+              value={passwordTwo}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Confirm Password"
+              required
+            />
+            {error && <p>{error.message}</p>}
+          </div>
+          <div className="shippingform">
+            <label>Shipping Address: </label>
+            <textarea
+              name="address"
+              type="text"
+              value={address}
+              onChange={this.onChange}
+            />
 
-        {error && <p>{error.message}</p>}
+            <label>State: </label>
+            <input
+              name="state"
+              type="text"
+              value={state}
+              onChange={this.onChange}
+              required
+            />
+            <label>City: </label>
+            <input
+              name="city"
+              type="text"
+              value={city}
+              onChange={this.onChange}
+              required
+            />
+
+            <label>Province: </label>
+            <input
+              name="province"
+              type="text"
+              value={province}
+              onChange={this.onChange}
+            />
+
+            <label>Phone: </label>
+            <input
+              name="number"
+              type="text"
+              value={number}
+              onChange={this.onChange}
+            />
+
+            <label>Postal Code:</label>
+            <input
+              name="code"
+              type="text"
+              value={code}
+              onChange={this.onChange}
+            />
+
+            <button disabled={isInvalid} type="submit">
+              Sign Up
+            </button>
+          </div>
+        </div>
       </form>
     );
   }
 }
 
 const SignUpLink = () => (
-  <p>
+  <p className="centerdiv">
     Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
   </p>
 );

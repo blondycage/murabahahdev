@@ -6,7 +6,7 @@ import Sort from '../Sort';
 const ShelfHeader = props => {
   return (
     <div className="shelf-container-header">
-      <h1>kabirs app development stage</h1>
+      <h1 className='centerdiv2'>TOP SELLING</h1>
       <small className="products-found">
         <span>{props.productsLength} Product(s) found.</span>
       </small>
