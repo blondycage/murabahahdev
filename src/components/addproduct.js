@@ -15,7 +15,8 @@ const InitialState=
     description : "",
  
     id: 0,
-   
+   thumburlbig:"",
+   thumburlsmall:"",
     isNew : true,
     
     price : 0,
