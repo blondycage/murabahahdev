@@ -10,9 +10,10 @@ import FloatCart from '../FloatCart';
 const HomePage = () => (
   <div>
     
-    <h1>Top Products</h1>
+   
     <main>
       <Filter />
+      <h1>Top Products</h1>
       <Shelf />
     </main>
     <FloatCart />

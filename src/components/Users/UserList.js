@@ -39,21 +39,21 @@ class UserList extends Component {
       <div>
         <h2>Users</h2>
         {loading && <div>Loading ...</div>}
-        <ul>
+        <ul className="userlistcontainerul">
           {users.map(user => (
-            <li key={user.uid}>
+            <li key={user.uid} className="userlistcontainer">
               <span>
-                <strong>ID:</strong> {user.uid}
+                <strong>ID:</strong>{user.uid}
               </span>
               <span>
-                <strong>E-Mail:</strong> {user.email}
+                <strong>E-Mail:</strong>{user.email}
               </span>
               <span>
-                <strong>Username:</strong> {user.username}
+                <strong>Username:</strong>{user.username}
               </span>
               <span>
-                <Link to={`${ROUTES.ADMIN}/${user.uid}`}>
-                  Details
+                <Link  className="link" to={`${ROUTES.ADMIN}/${user.uid}`} >
+                  <strong>View Details</strong>
                 </Link>
               </span>
             </li>

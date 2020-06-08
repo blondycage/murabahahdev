@@ -14,11 +14,11 @@ const Product = ({ product, addProduct }) => {
   let productInstallment;
 
   if (!!product.installments) {
-    const installmentPrice = product.price / product.installments;
+    const installmentPrice = product.price / 0.3;
 
     productInstallment = (
       <div className="installment">
-        <span>or {product.installments} x</span>
+        <span>or {6} x</span>
         <b>
           {product.currencyFormat}
           {formatPrice(installmentPrice, product.currencyId)}
@@ -33,7 +33,7 @@ const Product = ({ product, addProduct }) => {
       onClick={() => addProduct(product)}
       data-sku={product.sku}
     >
-      {product.isFreeShipping && (
+      {product.isNew && (
         <div className="shelf-stopper">Brand New </div>
       )}
       <Thumb

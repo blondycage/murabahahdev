@@ -15,7 +15,10 @@ body {
   color: #1b1a20;
   font-family: 'Roboto', sans-serif;
 }
-
+button{
+  width: auto;
+  color: red($color: #e9fa00);
+}
 main {
   display: flex;
   padding: 20px 2%;

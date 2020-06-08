@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
-
+import Portal from "../../components/docuploader"
 const SignUpPage = () => (
   <div>
     <h1>SignUp</h1>
@@ -26,7 +26,8 @@ const INITIAL_STATE = {
   city: '',
   province: '',
   number: null,
-  lastname: ''
+  lastname: '',
+  status:'Under-Review'
 };
 
 const ERROR_CODE_ACCOUNT_EXISTS = 'auth/email-already-in-use';
@@ -42,7 +43,7 @@ const ERROR_MSG_ACCOUNT_EXISTS = `
 class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
-
+    
     this.state = { ...INITIAL_STATE };
   }
 
@@ -59,7 +60,8 @@ class SignUpFormBase extends Component {
       province,
       number,
       firstname,
-      lastname
+      lastname,
+      status
     } = this.state;
     const roles = {};
 
@@ -82,7 +84,8 @@ class SignUpFormBase extends Component {
           province,
           number,
       firstname,
-      lastname
+      lastname,
+      status
         });
       })
       /*.then(() => {
@@ -90,7 +93,7 @@ class SignUpFormBase extends Component {
       })*/
       .then(() => {
         this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.HOME);
+        this.props.history.push(ROUTES.DOC_UPLOAD);
       })
       .catch(error => {
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
@@ -242,6 +245,7 @@ class SignUpFormBase extends Component {
               Sign Up
             </button>
           </div>
+        
         </div>
       </form>
     );

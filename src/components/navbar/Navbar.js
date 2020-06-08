@@ -30,6 +30,7 @@ const Navbar = props => {
 
             <Link to={ROUTES.HOME}>Home</Link>
 
+            <Link to={ROUTES.ACCOUNT}>Profile</Link>
             <Link to={ROUTES.ACCOUNT}>Account</Link>
 
             <SignOutButton />

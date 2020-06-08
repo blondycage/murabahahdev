@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Product from './Product';
+import Product from './products';
 
 const ProductList = ({ products }) => {
   return products.map(p => {

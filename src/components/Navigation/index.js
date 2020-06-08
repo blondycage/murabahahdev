@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
-import Navbar from '../navbar/Navbar';
+import Navbar from '../newNavbarAuth';
 import Nonauthnavbar from '../navbar/Nonauthnavbar';
 const Navigation = ({ authUser }) =>
-  authUser ? <Navbar authUser={authUser} /> : <Nonauthnavbar />;
+  authUser ? <Navbar authUser={authUser} /> : <Navbar />;
 
 const NavigationAuth = ({ authUser }) => (
   <ul>

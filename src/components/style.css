@@ -63,14 +63,15 @@ a {
 }
 
 button {
-	border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
-	color: #FFFFFF;
+	
+	border: 1.5px solid rgb(0, 0, 0);
+	background-color: rgb(255, 251, 43);
+	color: rgb(0, 0, 0);
 	font-size: 12px;
 	font-weight: bold;
-	padding: 12px 45px;
-	letter-spacing: 1px;
+	width: fit-content;
+	height: auto;
+
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
 }
@@ -80,7 +81,48 @@ button {
 	flex-basis: 400px;
 	margin-left: 15px;
 }
-
+.userlistcontainer{
+	display:flex;
+	
+	justify-content: space-around;
+	text-align: justify;
+	
+	border-bottom: 1px solid black;
+	
+margin: 0 auto;
+margin-bottom: 10px;
+flex-wrap: wrap;
+}
+.userlistcontainer  span {
+	text-align: left;
+}
+.userlistcontainerul{
+	padding: 10px 0;
+	margin: 0;
+}
+.upload{
+	margin:5% auto;
+	display: flex;
+	flex-direction: column;
+	max-width: 650px;
+}
+.upload form{
+	margin: 0 auto;
+}
+.upload button{
+	width: 400px;
+	text-align: left;
+}
+.link{
+	color: blue;
+	font-weight: bold;
+}
+.verify{
+	margin: 0 12%;
+}
+.verify input{
+	width: 200px;
+}
 button:active {
 	transform: scale(0.95);
 }
@@ -304,3 +346,9 @@ footer a {
 .forms{
 	display: flex;
 }
+.side-drawer  a{
+    list-style: none;
+   color: white;
+font-weight: bold;
+
+  }

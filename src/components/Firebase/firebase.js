@@ -1,7 +1,7 @@
 import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
-
+import 'firebase/storage';
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -37,14 +37,14 @@ class Firebase {
 
     this.auth = app.auth();
     this.db = app.database();
-
+    this.storage = app.storage();
     /* Social Sign In Method Provider */
 
     this.googleProvider = new app.auth.GoogleAuthProvider();
     this.facebookProvider = new app.auth.FacebookAuthProvider();
     this.twitterProvider = new app.auth.TwitterAuthProvider();
   }
-
+ 
   // *** Auth API ***
 
   doCreateUserWithEmailAndPassword = (email, password) =>
@@ -106,11 +106,12 @@ class Firebase {
     });
 
   // *** User API ***
-
+ 
   user = uid => this.db.ref(`users/${uid}`);
+  userdocs= uid => this.db.ref(`users/${uid}/documents`);
 
   users = () => this.db.ref('users');
-
+documentstorage= uid =>this.storage.ref(`verificationfiles/${uid}`);
   // *** Message API ***
 
   message = uid => this.db.ref(`messages/${uid}`);
