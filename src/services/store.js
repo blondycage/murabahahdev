@@ -9,8 +9,11 @@ export default initialState => {
 
   const store = createStore(
     rootReducer,
-    initialState
+    initialState,
    
+     compose(  applyMiddleware(...middleware)
+      
+    )
   );
 
   store.subscribe(() => {
