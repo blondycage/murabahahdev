@@ -11,17 +11,17 @@ import AccountPage from '../Account';
 import AdminPage from '../Admin/index';
 import UploadPage from '../docuploader';
 import AddProductPage from '../addproduct';
-
+import {NotificationContainer} from 'react-notifications';
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
-
+import 'react-notifications/lib/notifications.css';
 const App = () => (
   <Router>
     <div>
     <Navigation />
-
+   
       <hr />
-
+      <NotificationContainer/>
       <Route exact path={ROUTES.LANDING} component={LandingPage} />
       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
       <Route path={ROUTES.DOC_UPLOAD} component={UploadPage} />

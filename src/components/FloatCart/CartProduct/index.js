@@ -59,11 +59,18 @@ class CartProduct extends Component {
           onMouseOut={() => this.handleMouseOut()}
           onClick={() => removeProduct(product)}
         />
-        <Thumb
-          classes="shelf-item__thumb"
-          src={require(`../../../static/products/${product.sku}_2.jpg`)}
-          alt={product.title}
-        />
+       {!product.thumburlbig && (<Thumb
+        classes="shelf-item__thumb"
+
+        src={require(`../../../static/products/${product.sku}_2.jpg`)}
+        alt={product.title}
+      />)}
+      {!!product.thumburlbig &&(<Thumb
+        classes="shelf-item__thumb"
+
+        src={`${product.thumburlsmall}`}
+        alt={product.title}
+      />)}
         <div className="shelf-item__details">
           <p className="title">{product.title}</p>
           <p className="desc">

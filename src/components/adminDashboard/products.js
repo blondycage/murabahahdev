@@ -36,11 +36,19 @@ const Product = ({ product, firebase }) => {
       data-sku={product.sku}
     >
       {product.isNew && <div className="shelf-stopper">Brand New </div>}
-      <Thumb
+      {!product.thumburlbig && (<Thumb
         classes="shelf-item__thumb"
+
         src={require(`../../static/products/${product.sku}_1.jpg`)}
         alt={product.title}
-      />
+      />)}
+      {!!product.thumburlbig &&(<Thumb
+        classes="shelf-item__thumb"
+
+        src={`${product.thumburlbig}`}
+        alt={product.title}
+      />)}
+
 
       <p className="shelf-item__title">{product.title}</p>
       <div className="shelf-item__price">

@@ -111,9 +111,11 @@ class Firebase {
   userdocs= uid => this.db.ref(`users/${uid}/documents`);
 
   users = () => this.db.ref('users');
+  products = () => this.db.ref('products/products');
 documentstorage= uid =>this.storage.ref(`verificationfiles/${uid}`);
+productstorage= () =>this.storage.ref(`productfile/`);
   // *** Message API ***
-
+alltags=()=>this.db.ref('alltags');
   message = uid => this.db.ref(`messages/${uid}`);
 
   messages = () => this.db.ref('messages');

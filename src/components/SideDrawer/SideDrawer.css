@@ -1,4 +1,5 @@
 .side-drawer {
+  display :none;
     height: 100%;
     background-image: linear-gradient( 109.6deg,  rgba(157,75,199,1) 11.2%, rgba(119,81,204,1) 83.1% );
     background-color: #330055;
@@ -58,4 +59,10 @@
     
 padding-bottom: 10px;
 border-bottom: 1px solid rgba(247, 9, 255, 0.356);
+  }
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+   .side-drawer {
+     display: block;
+    }
   }

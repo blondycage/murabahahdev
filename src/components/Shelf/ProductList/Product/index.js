@@ -8,8 +8,8 @@ import { addProduct } from '../../../../services/cart/actions';
 
 const Product = ({ product, addProduct }) => {
   product.quantity = 1;
-
-  let formattedPrice = formatPrice(product.price, product.currencyId);
+  
+  let formattedPrice = new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'NGN' }).format(product.price);
 
   let productInstallment;
 
@@ -36,17 +36,26 @@ const Product = ({ product, addProduct }) => {
       {product.isNew && (
         <div className="shelf-stopper">Brand New </div>
       )}
-      <Thumb
+
+    {!product.thumburlbig &&  (<Thumb
         classes="shelf-item__thumb"
+
         src={require(`../../../../static/products/${product.sku}_1.jpg`)}
         alt={product.title}
-      />
+      />)}
+      {!!product.thumburlbig && (<Thumb
+        classes="shelf-item__thumb"
+
+        src={`${product.thumburlbig}`}
+        alt={product.title}
+      />)}
+
       <p className="shelf-item__title">{product.title}</p>
       <div className="shelf-item__price">
         <div className="val">
-          <small>{product.currencyFormat}</small>
-          <b>{formattedPrice.substr(0, formattedPrice.length - 3)}</b>
-          <span>{formattedPrice.substr(formattedPrice.length - 3, 3)}</span>
+         
+          <b>{formattedPrice.substring(0,11)}</b>
+          
         </div>
         
       </div>

@@ -5,24 +5,22 @@ import { withAuthorization, withEmailVerification } from '../Session';
 import Messages from '../Messages';
 import Shelf from '../Shelf';
 import Filter from '../Shelf/Filter';
-
+import Banner from '../banner';
 import FloatCart from '../FloatCart';
 const HomePage = () => (
   <div>
-    
-   
+       <Banner />
     <main>
+     
       <Filter />
-      <h1>Top Products</h1>
+
       <Shelf />
     </main>
     <FloatCart />
-   
+ 
   </div>
 );
 
 const condition = authUser => !!authUser;
 
-export default compose(
-  withAuthorization(condition),
-)(HomePage);
+export default compose(withAuthorization(condition))(HomePage);
