@@ -140,7 +140,7 @@ class SignUpFormBase extends Component {
 
     return (
       <form onSubmit={this.onSubmit} className="form">
-        <div className="forms">
+        <div className="formsss">
           <div className="persnal">
             <input
               name="firstname"

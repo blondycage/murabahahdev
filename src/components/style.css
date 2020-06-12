@@ -64,8 +64,8 @@ a {
 
 button {
 	
-	border: 1.5px solid rgb(0, 0, 0);
-	background-color: rgb(255, 251, 43);
+	border: 0.5px solid rgba(0, 0, 0, 0.514);
+	background-color: #dae53b;
 	color: rgb(0, 0, 0);
 	font-size: 12px;
 	font-weight: bold;
@@ -141,14 +141,14 @@ button.ghost {
 	
 	align-items: center;
 
-	flex-direction: column;
+	
 	
 	
 	margin: 30px auto;
 	padding: 20px;
 	
 }
-.forms div{
+.forms > div{
 	
 	margin: 0 auto;
 }
@@ -351,4 +351,43 @@ footer a {
    color: white;
 font-weight: bold;
 
+  }
+  .persnal {
+    max-width: 500px;
+    margin: 0 auto;
+}
+.shippingform {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 400px;
+    max-width: 500px;
+    margin-left: 0 auto;
+}
+.shippingform input {
+	margin: 0 auto;
+}
+.formsss {
+    margin: 0px 251px;
+}
+.signin {
+    display: flex;
+    justify-content: center;
+    margin: 15% auto;
+}
+  @media only screen and (max-width: 767px) {
+	.form,.forms{
+	
+    min-width: 600px;
+	}
+	.formsss {
+		margin: 0;
+	}
+	.signin form{
+	max-width: 300px;
+	margin: 10px;
+	}
+	.signin form>*{
+		max-width: 300px;
+		margin: 0 auto;
+		}
   }

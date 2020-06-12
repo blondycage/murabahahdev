@@ -97,15 +97,16 @@ class addproduct extends Component {
       snapShot => {
         //takes a snap shot of the process as it is happening
         console.log(snapShot);
-        NotificationManager.success(
-          'You have added a new book!',
-          'Successful!',
-          2000
-        );
+        
       },
       err => {
         //catches the errors
         console.log(err);
+        NotificationManager.error(
+          'unable to upload new image!',
+          'error!',
+          2000
+        );
       },
       () => {
         // gets the functions from storage refences the image storage in firebase by the children
@@ -121,6 +122,11 @@ class addproduct extends Component {
           .then(fireBaseUrl => {
             this.setState({ thumburlbig: fireBaseUrl });
             console.log(this.state.thumburlbig);
+            NotificationManager.success(
+              'You have added a new image!',
+              'Successful!',
+              2000
+            );
           });
       }
     );
@@ -162,6 +168,11 @@ class addproduct extends Component {
           .getDownloadURL()
           .then(fireBaseUrl => {
             this.setState({ thumburlsmall: fireBaseUrl });
+            NotificationManager.success(
+              'You have added a new image!',
+              'Successful!',
+              2000
+            );
           });
       }
     );
@@ -307,7 +318,7 @@ class addproduct extends Component {
               onClick={this.handleAllChecked}
               value="checkedall"
             />{' '}
-            <ul>
+            <ul className="headache">
               {this.state.fruites.map(fruite => {
                 return (
                   <CheckBox

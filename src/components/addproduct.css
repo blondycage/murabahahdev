@@ -4,8 +4,9 @@
     text-align: left;
   }
   
-  .Adp ul {
+  .headache{
     list-style: none;
+    display: inline;
   }
   .form2{
       display: flex;

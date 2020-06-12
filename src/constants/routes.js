@@ -8,3 +8,4 @@ export const ADMIN = '/admin';
 export const ADMIN_DETAILS = '/admin/:id';
 export const DOC_UPLOAD = '/docuploader';
 export const ADDPRODUCT = '/addproduct';
+export const PRICING = '/pricing';

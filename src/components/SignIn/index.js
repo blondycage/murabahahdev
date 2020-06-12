@@ -10,12 +10,7 @@ import '../../components/style.css'
 const SignInPage = () => (
   <div className='containerbody'>
     <h1>SignIn</h1>
-    <div className='social'>
-   <SignInGoogle />
-  
-    <SignInFacebook />
-    <SignInTwitter />
-    </div>
+   
     <SignInForm />
    
     

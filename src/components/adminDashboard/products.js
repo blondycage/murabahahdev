@@ -12,7 +12,7 @@ const Product = ({ product, firebase }) => {
   const query = itemsRef.orderByChild('sku').equalTo(product.sku);
 
   let formattedPrice = formatPrice(product.price, product.currencyId);
-  const [text, setText] = React.useState(0.00);
+  const [text, setText] = React.useState(formattedPrice);
   let productInstallment;
 
   if (!!product.installments) {

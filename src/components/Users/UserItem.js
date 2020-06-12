@@ -83,7 +83,10 @@ class UserItem extends Component {
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div>
               Current Status:
-              <input type="text" value={status} onChange={(e)=>{this.setState({ status:e.target.value})}} />
+              <select
+           value={status} onChange={(e)=>{this.setState({ status:e.target.value})}} > <option value="APPROVED">APPROVED</option>
+           <option value="BLOCKED">BLOCKED</option>
+           <option value="IN-REVIEW">IN-REVIEW</option> </select>
               <button onClick={()=>{this.props.firebase
       .user(this.props.match.params.id).child('status').set(this.state.status)}}>update status</button>
             </div>

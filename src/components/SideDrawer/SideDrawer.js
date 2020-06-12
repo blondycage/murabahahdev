@@ -20,25 +20,39 @@ const SideDrawer = props => {
  </div>
  <div className="flexcont">
   
-      {!props.authUser && (<div>
-      <Link to={ROUTES.LANDING}>Landing</Link>
+      {!props.authUser && (<div style={{display:"flex",justifyContent:'left'}}>
+        <i className="fa fa-user-circle " style={{color:"white",fontSize:'30px',alignSelf:"center", margin:'0 20px 0 20px'}}></i>
+      <Link to={ROUTES.LANDING} style={{alignSelf:"center",textAlign:"center",fontSize:"20px" }}>Landing</Link>
     </div>)}
-    {!!props.authUser &&(<div>
-      <Link to={ROUTES.HOME}>Home</Link>
+    {!!props.authUser &&(<div style={{display:"flex",justifyContent:'left'}}>
+      <i className="fa fa-home " style={{color:"white",fontSize:'30px',alignSelf:"center", margin:'0 20px 0 20px'}}></i>
+      <Link to={ROUTES.HOME} style={{alignSelf:"center",textAlign:"center",fontSize:"20px"}}>Home</Link>
     </div>)}
-    {!!props.authUser &&(<div>
-      <Link to={ROUTES.ACCOUNT}>Account</Link>
+    {!!props.authUser &&(<div style={{display:"flex",justifyContent:'left'}}>
+    <i className="fa fa-id-card " style={{color:"white",fontSize:'30px',alignSelf:"center", margin:'0 20px 0 20px'}}></i>
+      
+      <Link to={ROUTES.ACCOUNT} style={{alignSelf:"center",textAlign:"center",fontSize:"20px"}}>Account</Link>
     </div>)}
     {!!props.authUser && !!props.authUser.roles[ROLES.ADMIN] && (
-      <div>
-        <Link to={ROUTES.ADMIN}>Admin</Link>
+      <div style={{display:"flex",justifyContent:'left'}}>
+          <i className="fa fa-user-circle " style={{color:"white",fontSize:'30px',alignSelf:"center", margin:'0 20px 0 20px'}}></i>
+        <Link to={ROUTES.ADMIN} style={{alignSelf:"center",textAlign:"center",fontSize:"20px"}}>Admin</Link>
       </div>
     )}
-    {!!props.authUser && (<div>
+    <div style={{display:"flex",justifyContent:'left'}}>
+        <i className="fa fa-question " style={{color:"white",fontSize:'30px',alignSelf:"center", margin:'0 20px 0 20px'}}></i>
+      <Link to={ROUTES.LANDING} style={{alignSelf:"center",textAlign:"center",fontSize:"20px" }}>F.A.Q</Link>
+    </div>)
+    <div style={{display:"flex",justifyContent:'left'}}>
+        <i className="fa fa-info " style={{color:"white",fontSize:'30px',alignSelf:"center", margin:'0 20px 0 20px'}}></i>
+      <Link to={ROUTES.LANDING} style={{alignSelf:"center",textAlign:"center",fontSize:"20px" }}>Policies</Link>
+    </div>)
+    {!!props.authUser && (<div >
       <SignOutButton />
     </div>)}
-    {!props.authUser && (<div>
-      <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+    {!props.authUser && (<div style={{display:"flex",justifyContent:'left'}}>
+      <i className="fa fa-user-circle " style={{color:"white",fontSize:'30px',alignSelf:"center", margin:'0 20px 0 20px'}}></i>
+      <Link to={ROUTES.SIGN_IN} style={{alignSelf:"center",textAlign:"center",fontSize:"20px"}}>Sign In</Link>
     </div>)}
   </div>
     </nav>

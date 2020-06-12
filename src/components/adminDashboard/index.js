@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { fetchProducts } from '../../services/shelf/actions';
-
+import { Link } from 'react-router-dom';
 import Spinner from '../Spinner';
+import * as ROUTES from "../../constants/routes"
 import ShelfHeader from '../Shelf/ShelfHeader';
 import ProductList from '../adminDashboard/productlist';
 
@@ -58,6 +59,11 @@ show:false
     return (
       <React.Fragment>
          <div style={{margin:"20px 15%",fontWeight:"bold",backgroundColor:"black",color:"white",cursor:"pointer"}} onClick={()=>{this.setState({show: !(show)})}}>SHOW/HIDE PRODUCTS PANEL</div>
+       
+        <Link to={ROUTES.ADDPRODUCT}>ADD NEW PRODUCT</Link>
+
+
+        
         { show &&<div>
         {isLoading && <Spinner />}
         <div className="shelf-container">
