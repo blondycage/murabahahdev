@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
 import { withFirebase } from '../components/Firebase';
 import Firebase from '../components/Firebase';
 import { connect } from 'react-redux';
@@ -134,15 +135,15 @@ function docuploader(props) {
     );
   };
   return (
-    <div className="upload">
+    <div className="upload" style={{margin:'50px 30px'}}>
       <h1>UPLOAD YOUR FILES FOR THE REVIEW PROCESS</h1>
-      <form onSubmit={handleFireBaseUpload}>
+      <form onSubmit={handleFireBaseUpload} >
         <input
           // allows you to reach into your file directory and upload image to the browser
           type="file"
           onChange={handleImageAsFile}
         />
-        <button type="submit">Upload Identification Document</button>
+        <Button type="submit" variant="contained" color="Primary">Upload Identification Document</Button>
       </form>
       <form onSubmit={handleFireBase2Upload}>
         <input
@@ -150,7 +151,7 @@ function docuploader(props) {
           type="file"
           onChange={handleImage2AsFile}
         />
-        <button type="submit">Upload Utility Bill Document</button>
+        <Button type="submit" variant="contained" color="Primary">Upload Utility Bill Document</Button>
       </form>
       <form onSubmit={handleFireBase3Upload}>
         <input
@@ -159,7 +160,7 @@ function docuploader(props) {
           onChange={handleImage3AsFile}
         />
 
-        <button type="submit">Upload 6 month Account Document</button>
+        <Button type="submit" variant="contained" color="Primary">Upload 6 month Account Document</Button>
       </form>
     </div>
   );

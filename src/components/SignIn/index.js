@@ -7,11 +7,24 @@ import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import '../../components/style.css'
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 const SignInPage = () => (
-  <div className='containerbody'>
-    <h1>SignIn</h1>
+  <div className='containerwrap'>
    
-    <SignInForm />
+   
+    <SignInForm  style={{display:"inline-block"}}/>
    
     
    
@@ -33,7 +46,25 @@ const ERROR_MSG_ACCOUNT_EXISTS = `
   this account instead and associate your social accounts on
   your personal account page.
 `;
-
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 class SignInFormBase extends Component {
   constructor(props) {
     super(props);
@@ -67,8 +98,13 @@ class SignInFormBase extends Component {
     const isInvalid = password === '' || email === '';
 
     return (
-      <div className='signin'>
-      <form onSubmit={this.onSubmit} >
+      <div style={{marginTop:"35%",maxWidth:'400px'}}>
+         
+      <form onSubmit={this.onSubmit} style={{marginTop:"15%",maxWidth:'400px',display:"inline-block",padding:"0 10px"}} >
+      <LockOutlinedIcon />
+      <Typography component="h1" variant="h5">
+          Sign In
+        </Typography>
         <input
           name="email"
           value={email}
@@ -83,10 +119,17 @@ class SignInFormBase extends Component {
           type="password"
           placeholder="Password"
         />
-        <button disabled={isInvalid} type="submit">
-          Sign In
-        </button>
-
+        
+        <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={useStyles.submit}
+            disabled={isInvalid}
+          >
+            Sign In
+          </Button>
         {error && <p>{error.message}</p>}
         <PasswordForgetLink  className='centerdiv'/>
     <SignUpLink   className='centerdiv'/>
@@ -96,161 +139,124 @@ class SignInFormBase extends Component {
   }
 }
 
-class SignInGoogleBase extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = { error: null };
-  }
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
-  onSubmit = event => {
+
+
+ function SignIn(props) {
+  const classes = useStyles();
+
+ const onSubmit = event => {
+    const { email, password } = this.state;
+
     this.props.firebase
-      .doSignInWithGoogle()
-      .then(socialAuthUser => {
-        // Create a user in your Firebase Realtime Database too
-        return this.props.firebase.user(socialAuthUser.user.uid).set({
-          username: socialAuthUser.user.displayName,
-          email: socialAuthUser.user.email,
-          roles: {},
-        });
-      })
+      .doSignInWithEmailAndPassword(email, password)
       .then(() => {
-        this.setState({ error: null });
+        this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
       })
       .catch(error => {
-        if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
-          error.message = ERROR_MSG_ACCOUNT_EXISTS;
-        }
-
         this.setState({ error });
       });
 
     event.preventDefault();
   };
-
-  render() {
-    const { error } = this.state;
-
-    return (
-      <div onClick={this.onSubmit}><i className="fa fa-google"></i>
-        
-        {error && <p>{error.message}</p>}
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <form className={classes.form} noValidate>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={this.onSubmit()}
+          >
+            Sign In
+          </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="#" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
       </div>
-    );
-  }
+      <Box mt={8}>
+        <Copyright />
+      </Box>
+    </Container>
+  );
 }
 
-class SignInFacebookBase extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = { error: null };
-  }
 
-  onSubmit = event => {
-    this.props.firebase
-      .doSignInWithFacebook()
-      .then(socialAuthUser => {
-        // Create a user in your Firebase Realtime Database too
-        return this.props.firebase.user(socialAuthUser.user.uid).set({
-          username: socialAuthUser.additionalUserInfo.profile.name,
-          email: socialAuthUser.additionalUserInfo.profile.email,
-          roles: {},
-        });
-      })
-      .then(() => {
-        this.setState({ error: null });
-        this.props.history.push(ROUTES.HOME);
-      })
-      .catch(error => {
-        if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
-          error.message = ERROR_MSG_ACCOUNT_EXISTS;
-        }
-
-        this.setState({ error });
-      });
-
-    event.preventDefault();
-  };
-
-  render() {
-    const { error } = this.state;
-
-    return (
-      <div onClick={this.onSubmit}><i className="fa fa-facebook"></i>
-        
-        {error && <p>{error.message}</p>}
-      </div>
-    );
-  }
-}
-
-class SignInTwitterBase extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { error: null };
-  }
-
-  onSubmit = event => {
-    this.props.firebase
-      .doSignInWithTwitter()
-      .then(socialAuthUser => {
-        // Create a user in your Firebase Realtime Database too
-        return this.props.firebase.user(socialAuthUser.user.uid).set({
-          username: socialAuthUser.additionalUserInfo.profile.name,
-          email: socialAuthUser.additionalUserInfo.profile.email,
-          roles: {},
-        });
-      })
-      .then(() => {
-        this.setState({ error: null });
-        this.props.history.push(ROUTES.HOME);
-      })
-      .catch(error => {
-        if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
-          error.message = ERROR_MSG_ACCOUNT_EXISTS;
-        }
-
-        this.setState({ error });
-      });
-
-    event.preventDefault();
-  };
-
-  render() {
-    const { error } = this.state;
-
-    return (
-     <div onClick={this.onSubmit}><i className="fa fa-twitter"></i>
-        
-        {error && <p>{error.message}</p>}
-      </div>
-    );
-  }
-}
 
 const SignInForm = compose(
   withRouter,
   withFirebase,
 )(SignInFormBase);
 
-const SignInGoogle = compose(
+const SignInForm2 = compose(
   withRouter,
   withFirebase,
-)(SignInGoogleBase);
+)(SignIn);
 
-const SignInFacebook = compose(
-  withRouter,
-  withFirebase,
-)(SignInFacebookBase);
 
-const SignInTwitter = compose(
-  withRouter,
-  withFirebase,
-)(SignInTwitterBase);
+
 
 export default SignInPage;
 
-export { SignInForm, SignInGoogle, SignInFacebook, SignInTwitter };
+export { SignInForm };

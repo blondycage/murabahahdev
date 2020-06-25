@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateFilters } from '../../../services/filters/actions';
 import Checkbox from '../../Checkbox';
-
+import Category from "../category"
 import './style.scss';
 
 const availableSizes = ['X', '64', 'USED', 'PRO', 'MAX', 'WHT', 'BLCK','CELL','LTE'];
@@ -42,11 +42,14 @@ class Filter extends Component {
 
   render() {
     return (
+      
       <div className="filters">
         <h4 className="title">Filters:</h4>
         {this.createCheckboxes()}
-        
-      </div>
+      <Category/>
+        </div>
+       
+    
     );
   }
 }

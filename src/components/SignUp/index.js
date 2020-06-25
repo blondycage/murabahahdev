@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-
+import Button from '@material-ui/core/Button';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 import Portal from "../../components/docuploader"
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 const SignUpPage = () => (
   <div>
-    <h1>SignUp</h1>
-    <SignUpForm />
+    
+    <SignUpForm style={{marginTop:"22%"}}/>
   </div>
 );
 
@@ -139,114 +142,158 @@ class SignUpFormBase extends Component {
       username === '';
 
     return (
-      <form onSubmit={this.onSubmit} className="form">
-        <div className="formsss">
-          <div className="persnal">
-            <input
-              name="firstname"
-              value={firstname}
+      <form onSubmit={this.onSubmit} className="upform" style={{textAlign:"center"}}>
+       
+        <div className="for" style={{display:"inline-block"}}>
+          <div className="persnal" style={{marginTop:"22%"}}>
+          <LockOutlinedIcon/>
+          <Typography component="h1" variant="h5">
+          Sign up
+        </Typography>
+             <TextField
+                autoComplete="fname"
+                name="firstname"
+                variant="outlined"
+                required
+                fullWidth
+                value={firstname}
               onChange={this.onChange}
-              type="text"
-              placeholder="First Name"
-              required
-            />
-            <input
+                id="firstName"
+                label="First Name"
+                autoFocus
+              />
+            <TextField
               name="lastname"
               value={lastname}
+              variant="outlined"
+                required
+                fullWidth
               onChange={this.onChange}
               type="text"
               placeholder="Last Name"
-              required
+            
             />
-            <input
+            <TextField
+             variant="outlined"
+             required
+             fullWidth
               name="username"
               value={username}
               onChange={this.onChange}
               type="text"
               placeholder="userName"
             />
-            <input
+            <TextField
               name="email"
               value={email}
               onChange={this.onChange}
               type="text"
               placeholder="Email Address"
+              variant="outlined"
               required
+              fullWidth
             />
-            <input
+            <TextField
               name="passwordOne"
               value={passwordOne}
               onChange={this.onChange}
               type="password"
               placeholder="Password"
-              required
+              variant="outlined"
+                required
+                fullWidth
             />
-            <input
+            <TextField
               name="passwordTwo"
               value={passwordTwo}
               onChange={this.onChange}
               type="password"
               placeholder="Confirm Password"
-              required
+              variant="outlined"
+                required
+                fullWidth
             />
             {error && <p>{error.message}</p>}
-          </div>
-          <div className="shippingform">
-            <label>Shipping Address: </label>
-            <textarea
+            <div >
+           
+            <TextField
               name="address"
               type="text"
               value={address}
               onChange={this.onChange}
+              variant="outlined"
+              required
+              placeholder="Address"
+              fullWidth
             />
 
-            <label>State: </label>
-            <input
+           
+            <TextField
               name="state"
               type="text"
               value={state}
               onChange={this.onChange}
+              variant="outlined"
               required
+              fullWidth
+              placeholder="State"
             />
-            <label>City: </label>
-            <input
+           
+            <TextField
               name="city"
               type="text"
               value={city}
               onChange={this.onChange}
-              required
+              variant="outlined"
+                required
+                fullWidth
+                placeholder="City"
             />
 
-            <label>Province: </label>
-            <input
+          
+            <TextField
               name="province"
               type="text"
               value={province}
               onChange={this.onChange}
+              placeholder="Province"
+              variant="outlined"
+              required
+              fullWidth
             />
 
-            <label>Phone: </label>
-            <input
+           
+            <TextField
               name="number"
               type="text"
               value={number}
               onChange={this.onChange}
+              variant="outlined"
+              required
+              placeholder="Phone"
+              fullWidth
             />
 
-            <label>Postal Code:</label>
-            <input
+           
+            <TextField
               name="code"
               type="text"
               value={code}
               onChange={this.onChange}
+              variant="outlined"
+              required
+              placeholder="zIP"
+              fullWidth
             />
 
-            <button disabled={isInvalid} type="submit">
+            <Button disabled={isInvalid} variant="contained" color='Primary' type="submit">
               Sign Up
-            </button>
+            </Button>
           </div>
         
         </div>
+          </div>
+          
       </form>
     );
   }

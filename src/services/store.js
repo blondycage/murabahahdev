@@ -6,7 +6,7 @@ export default initialState => {
   initialState =
     JSON.parse(window.localStorage.getItem('state')) || initialState;
   const middleware = [thunk];
-
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const store = createStore(
     rootReducer,
     initialState,
@@ -15,7 +15,7 @@ export default initialState => {
       
     )
   );
-
+//,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   store.subscribe(() => {
     const state = store.getState();
     const persist = {

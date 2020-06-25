@@ -1,9 +1,10 @@
 import React from 'react'
-import Tab from  '../tabbedaccount'
+import Dash from "../Account/Dashboard"
 function index() {
   return (
     <div>
-      <Tab style={{marginTop:"500px"}}/>
+     <Dash/>
+    
     </div>
   )
 }

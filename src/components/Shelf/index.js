@@ -7,7 +7,8 @@ import { fetchProducts } from '../../services/shelf/actions';
 import Spinner from '../Spinner';
 import ShelfHeader from './ShelfHeader';
 import ProductList from './ProductList';
-
+import Pagination from '@material-ui/lab/Pagination';
+import Category from '../Shelf/category'
 import './style.scss';
 
 class Shelf extends Component {
@@ -15,11 +16,11 @@ class Shelf extends Component {
     fetchProducts: PropTypes.func.isRequired,
     products: PropTypes.array.isRequired,
     filters: PropTypes.array,
-    sort: PropTypes.string
+    sort: PropTypes.string,
   };
 
   state = {
-    isLoading: false
+    isLoading: false,
   };
 
   componentDidMount() {
@@ -55,22 +56,26 @@ class Shelf extends Component {
     return (
       <React.Fragment>
         {isLoading && <Spinner />}
+       
         <div className="shelf-container">
-          <ShelfHeader productsLength={products.length} />
+       <ShelfHeader productsLength={products.length} />
+         
           <ProductList products={products} />
+          <div style={{width:"100%",textAlign:'center'}}><div style={{display:'inline-block'}}><Pagination count={10}  variant="outlined" /></div></div>
+       
         </div>
+     
+        
+       
       </React.Fragment>
     );
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   products: state.shelf.products,
   filters: state.filters.items,
-  sort: state.sort.type
+  sort: state.sort.type,
 });
 
-export default connect(
-  mapStateToProps,
-  { fetchProducts }
-)(Shelf);
+export default connect(mapStateToProps, { fetchProducts })(Shelf);

@@ -32,6 +32,8 @@ const Product = ({ product, addProduct }) => {
       className="shelf-item"
       onClick={() => addProduct(product)}
       data-sku={product.sku}
+      onMouseEnter={()=>{console.log("enter")}}
+      onMouseLeave={()=>{console.log("EXIT")}}
     >
       {product.isNew && (
         <div className="shelf-stopper">Brand New </div>
