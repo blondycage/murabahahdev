@@ -1,4 +1,4 @@
-import axios from 'axios';
+import fetch from 'node-fetch';
 
 export function handler(event, context, callback) {
    
