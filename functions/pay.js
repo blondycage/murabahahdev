@@ -1,11 +1,16 @@
 import axios from 'axios';
 
 export function handler(event, context, callback) {
+    const headers = {
+       
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer FLWSECK_TEST-d5d039c7cfa21ed2a6838f6ca1514e5d-X'
+      }
   axios(
     {
       method: 'post',
       url: 'https://api.flutterwave.com/v3/payments',
-      tx_ref: 'appppp-tx-196878ki77645tty',
+      tx_ref: 'appppp-tx-19vcvn6878ki77645tty',
       amount: '10000',
       currency: 'NGN',
       redirect_url: 'https://halalfinans.web.app/',
@@ -26,14 +31,11 @@ export function handler(event, context, callback) {
       },
     },
     {
-      headers: {
-        Authorization: 'Bearer FLWSECK_TEST-d5d039c7cfa21ed2a6838f6ca1514e5d-X',
-        'Content-Type': 'application/json',
-      },
+      headers: headers,
     }
   )
     .then((response) => {
-      console.log(response);
+      console.log(response.data);
       callback(null, {
         statusCode: 200,
         body: 'yay',
