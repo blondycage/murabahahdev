@@ -4,7 +4,8 @@ export function handler(event, context, callback) {
     const headers = {
        "Access-Control-Allow-Origin": "*",
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer FLWSECK_TEST-d5d039c7cfa21ed2a6838f6ca1514e5d-X'
+        'Authorization': 'Bearer FLWSECK_TEST-d5d039c7cfa21ed2a6838f6ca1514e5d-X',
+        'Access-Control-Allow-Headers': "Authorization",
       }
   axios(
     {
