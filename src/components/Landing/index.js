@@ -8,8 +8,8 @@ import FloatCart from '../FloatCart';
 import Banner from '../banner'
 
 const Landing = () => (
-  <React.Fragment>
-     <Carousel showThumbs={false} dynamicHeight={true} autoPlay={true} swipeable={true} stopOnHover={false} infiniteLoop={true} showArrows={false}>
+  <React.Fragment style={{marginTop:"280px"}}>
+     <Carousel showThumbs={false} dynamicHeight={true} autoPlay={true} swipeable={true} stopOnHover={false} infiniteLoop={true} showArrows={false} className="carouselme">
                 <div>
                     <img src={require("../../static/ps5.jpg")} />
                    

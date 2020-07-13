@@ -14,8 +14,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import {Carousel} from 'react-responsive-carousel';
 
 const HomePage = () => (
-  <div>
-   <Carousel showThumbs={false} dynamicHeight={true} autoPlay={true} swipeable={true} stopOnHover={false} infiniteLoop={true} showArrows={false}>
+  <div  style={{marginTop:"60px"}}>
+   <Carousel  className="carouselme" showThumbs={false} dynamicHeight={true} autoPlay={true} swipeable={true} stopOnHover={false} infiniteLoop={true} showArrows={false}>
                 <div>
                     <img src={require("../../static/ps5.jpg")} />
                    

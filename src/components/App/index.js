@@ -10,7 +10,7 @@ import HomePage from '../Home';
 import AccountPage from '../Account/Dashboard';
 import AdminPage from '../Admin/index';
 import UploadPage from '../docuploader';
-import CheckoutPage from '../Checkout';
+import CheckoutPage from '../AddressForm';
 import Pricing from "../pricing"
 import AddProductPage from '../addproduct';
 import {NotificationContainer} from 'react-notifications';
