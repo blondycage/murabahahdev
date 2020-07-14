@@ -41,7 +41,7 @@ export function handler(event, context, callback) {
       console.log(response.data);
       callback(null, {
         statusCode: 200,
-        body: response.data,
+        body: "response.data",
       });
     })
     .catch((err) => console.log(err));
