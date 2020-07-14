@@ -47,7 +47,7 @@ export function handler(event, context, callback) {
           'content-type': 'application/json',
           'Access-Control-Allow-Origin': '*',
         },
-        body: response.data,
+        body:JSON.stringify( response.data),
       });
     })
     .catch((err) => console.log(err));
