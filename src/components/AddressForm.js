@@ -15,6 +15,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import { connect } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 
@@ -72,6 +73,7 @@ const useStyles = makeStyles((theme) => ({
 
  function AddressForm({cartProducts,cartTotal,authUser}) {
   const classes = useStyles();
+  const history = useHistory();
   const pay = () => {
     const requestOptions = {
       method: 'POST',
@@ -89,6 +91,7 @@ const useStyles = makeStyles((theme) => ({
     fetch('https://boring-yonath-397d65.netlify.app/.netlify/functions/pay', requestOptions)
       .then((response) => response.json())
       .then((data) => {
+        history.push(`${data.data.link}`);
         console.log(data);
       })
       .catch((err) => console.log(err));
