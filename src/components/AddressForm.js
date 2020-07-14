@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
     fetch('https://boring-yonath-397d65.netlify.app/.netlify/functions/pay', requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        window.location.pathname = `${data.data.link}`
+        window.location = `${data.data.link}`
       
       })
       .catch((err) => console.log(err));
