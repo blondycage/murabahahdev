@@ -6,12 +6,14 @@ export function handler(event, context, callback) {
       "Accept":'application/json',
         'Content-Type': 'application/json',
         'Authorization': 'Bearer FLWSECK_TEST-d5d039c7cfa21ed2a6838f6ca1514e5d-X',
+       " Access-Control-Allow-Origin":"*"
         
       }
     const randtx=uuidv1();
   axios(
     {
       method: 'post',
+   
       url:'https://api.flutterwave.com/v3/payments',
       data:{ tx_ref: `MRBTX- ${randtx}`,
       amount: '10000',
