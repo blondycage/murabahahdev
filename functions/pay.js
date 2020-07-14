@@ -6,7 +6,7 @@ export function handler(event, context, callback) {
       "Accept":'application/json',
         'Content-Type': 'application/json',
         'Authorization': 'Bearer FLWSECK_TEST-d5d039c7cfa21ed2a6838f6ca1514e5d-X',
-       " Access-Control-Allow-Origin":"*"
+     'Access-Control-Allow-Origin':"*"
         
       }
     const randtx=uuidv1();
