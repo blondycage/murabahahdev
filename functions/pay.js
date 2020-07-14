@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { v1 as uuidv1 } from 'uuid';
 export function handler(event, context, callback) {
     const headers = {
         'Access-Control-Allow-Headers': "Authorization",
@@ -8,12 +8,12 @@ export function handler(event, context, callback) {
         'Authorization': 'Bearer FLWSECK_TEST-d5d039c7cfa21ed2a6838f6ca1514e5d-X',
         
       }
-      
+    const randtx=uuidv1();
   axios(
     {
       method: 'post',
-      url: 'https://api.flutterwave.com/v3/payments',
-      data:{ tx_ref: 'appppp-tx-19vcvn690878ki77645tty',
+      url:'https://api.flutterwave.com/v3/payments',
+      data:{ tx_ref: `MRBTX- ${randtx}`,
       amount: '10000',
       currency: 'NGN',
       redirect_url: 'https://halalfinans.web.app/',
@@ -41,7 +41,7 @@ export function handler(event, context, callback) {
       console.log(response.data);
       callback(null, {
         statusCode: 200,
-        body: 'yay',
+        body: response.data,
       });
     })
     .catch((err) => console.log(err));
