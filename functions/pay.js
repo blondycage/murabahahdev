@@ -18,7 +18,7 @@ export function handler(event, context, callback) {
       data:{ tx_ref: `MRBTX- ${randtx}`,
       amount: '10000',
       currency: 'NGN',
-      redirect_url: 'https://halalfinans.web.app/',
+      redirect_url: 'https://boring-yonath-397d65.netlify.app/',
       payment_options: 'card',
       meta: {
         consumer_id: 23,
