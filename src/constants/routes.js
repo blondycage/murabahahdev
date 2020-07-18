@@ -11,3 +11,4 @@ export const ADDPRODUCT = '/addproduct';
 export const PRICING = '/pricing';
 export const CHECKOUT = '/checkout';
 export const REDIRECT = '/confirmation'
+export const CHECKOUT2 = '/checkout2';

@@ -247,7 +247,7 @@ class FloatCart extends Component {
             <Paper elevation={3} >
             <h3 className="pheader" style={{backgroundColor:"purple",width:"100%",color:"white"}}>MURABAHAH PLAN</h3>
               <p className="ptext">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit alias quibusdam doloremque praesentium accusamus perspiciatis voluptatum sed, modi itaque earum soluta enim molestiae numquam ipsa neque ex nesciunt harum optio incidunt tempora officiis quas eaque hic. Accusamus et ea quae vel veniam nemo, libero dolor magni quibusdam doloremque itaque hic?</p>
-              <Button variant="outlined" color="primary" href="/checkout">
+              <Button variant="outlined" color="primary" href="/checkout2">
             START PLAN
             </Button>
             </Paper>
