@@ -29,7 +29,8 @@ export function handler(event, context, callback) {
   })
     .then((response) => {
       console.log(response.data);
-      planid=response.data.id
+      data= JSON.parse(response.data);
+      planid=data.id
       console.log(planid);
       })
     .catch((err) => console.log(err));
