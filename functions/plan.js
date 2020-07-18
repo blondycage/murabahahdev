@@ -29,9 +29,14 @@ export function handler(event, context, callback) {
   })
     .then((response) => {
       console.log(response.data);
-     var data= JSON.parse(response);
-      planid=data.data.id
-      console.log(planid);
+      callback(null, {
+        statusCode: 200,
+        headers: {
+          'content-type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+        body: JSON.stringify(response.data),
+      });
       })
     .catch((err) => console.log(err));
 
