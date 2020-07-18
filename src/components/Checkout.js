@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
+import { connect } from 'react-redux';
 
 function Copyright() {
   return (
@@ -64,29 +65,51 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
+const steps = ['Shipping address',  'Review your order'];
 
 function getStepContent(step) {
   switch (step) {
     case 0:
       return <AddressForm />;
     case 1:
-      return <PaymentForm />;
-    case 2:
       return <Review />;
+  
+     
     default:
       throw new Error('Unknown step');
   }
 }
 
-export default function Checkout() {
+ function Checkout({ cartProducts, cartTotal, authUser}) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
+const Placeorder=()=>{
+  const requestOptions = {
+    method: 'POST',
 
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      totalamount: cartTotal.totalPrice,
+      user: authUser,
+      products: cartProducts,
+    }),
+  };
+  fetch(
+    'https://boring-yonath-397d65.netlify.app/.netlify/functions/pay',
+    requestOptions
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      window.location.href = `${data.data.link}`;
+    })
+    .catch((err) => console.log(err));
+}
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
@@ -108,18 +131,7 @@ export default function Checkout() {
             ))}
           </Stepper>
           <React.Fragment>
-            {activeStep === steps.length ? (
-              <React.Fragment>
-                <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
-                </Typography>
-                <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order
-                  confirmation, and will send you an update when your order has
-                  shipped.
-                </Typography>
-              </React.Fragment>
-            ) : (
+           
               <React.Fragment>
                 {getStepContent(activeStep)}
                 <div className={classes.buttons}>
@@ -131,14 +143,14 @@ export default function Checkout() {
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={handleNext}
+                    onClick={activeStep === steps.length - 1 ? Placeorder : handleNext}
                     className={classes.button}
                   >
                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                   </Button>
                 </div>
               </React.Fragment>
-            )}
+           
           </React.Fragment>
         </Paper>
         <Copyright />
@@ -146,3 +158,10 @@ export default function Checkout() {
     </React.Fragment>
   );
 }
+
+const mapStateToProps = (state) => ({
+  cartProducts: state.cart.products,
+  authUser: state.sessionState.authUser,
+  cartTotal: state.total.data,
+});
+export default connect(mapStateToProps, {})(Checkout);

@@ -10,8 +10,9 @@ import HomePage from '../Home';
 import AccountPage from '../Account/Dashboard';
 import AdminPage from '../Admin/index';
 import UploadPage from '../docuploader';
-import CheckoutPage from '../AddressForm';
+import CheckoutPage from '../Checkout';
 import Pricing from "../pricing"
+import ConfirmPage from '../confirmation'
 import AddProductPage from '../addproduct';
 import {NotificationContainer} from 'react-notifications';
 import * as ROUTES from '../../constants/routes';
@@ -32,6 +33,7 @@ const App = () => (
       <Route path={ROUTES.DOC_UPLOAD} component={UploadPage} />
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
       <Route path={ROUTES.PRICING} component={Pricing} />
+      <Route path={ROUTES.REDIRECT} component={ConfirmPage} />
       <Route
         path={ROUTES.PASSWORD_FORGET}
         component={PasswordForgetPage}

@@ -15,7 +15,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import { connect } from 'react-redux';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 
@@ -71,28 +71,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
- function AddressForm({cartProducts,cartTotal,authUser}) {
+function AddressForm({ cartProducts, cartTotal, authUser }) {
   const classes = useStyles();
   const history = useHistory();
   const pay = () => {
     const requestOptions = {
       method: 'POST',
-     
+
       headers: {
         'Content-Type': 'application/json',
       },
-      body:JSON.stringify( {
-        totalamount:cartTotal,
-      user: authUser,
-       products: cartProducts,
-       
-    })
-  }
-    fetch('https://boring-yonath-397d65.netlify.app/.netlify/functions/pay', requestOptions)
+      body: JSON.stringify({
+        totalamount: cartTotal,
+        user: authUser,
+        products: cartProducts,
+      }),
+    };
+    fetch(
+      'https://boring-yonath-397d65.netlify.app/.netlify/functions/pay',
+      requestOptions
+    )
       .then((response) => response.json())
       .then((data) => {
-        window.location.href = `${data.data.link}`
-      
+        window.location.href = `${data.data.link}`;
       })
       .catch((err) => console.log(err));
   };
@@ -114,6 +115,7 @@ const useStyles = makeStyles((theme) => ({
               label="First name"
               fullWidth
               autoComplete="given-name"
+              value={authUser.address.address.firstname}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -123,6 +125,7 @@ const useStyles = makeStyles((theme) => ({
               name="lastName"
               label="Last name"
               fullWidth
+              value={authUser.address.address.lastname}
               autoComplete="family-name"
             />
           </Grid>
@@ -132,19 +135,12 @@ const useStyles = makeStyles((theme) => ({
               id="address1"
               name="address1"
               label="Address line 1"
+              value={authUser.address.address.address}
               fullWidth
               autoComplete="shipping address-line1"
             />
           </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="address2"
-              name="address2"
-              label="Phone Number"
-              fullWidth
-              autoComplete="shipping address-line2"
-            />
-          </Grid>
+          
           <Grid item xs={12} sm={6}>
             <TextField
               required
@@ -153,6 +149,7 @@ const useStyles = makeStyles((theme) => ({
               label="City"
               fullWidth
               autoComplete="shipping address-level2"
+              value={authUser.address.address.city}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -161,57 +158,31 @@ const useStyles = makeStyles((theme) => ({
               name="state"
               label="State/Province/Region"
               fullWidth
+              value={authUser.address.address.state}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="zip"
-              name="zip"
-              label="Zip / Postal code"
-              fullWidth
-              autoComplete="shipping postal-code"
-            />
-          </Grid>
+         
           <Grid item xs={12} sm={6}>
             <TextField
               required
               id="country"
               name="country"
-              label="Country"
+              label="Province"
               fullWidth
               autoComplete="shipping country"
+              value={authUser.address.address.province}
             />
           </Grid>
-          <Grid item xs={12}>
-            <FormControlLabel
-              control={
-                <Checkbox color="secondary" name="saveAddress" value="yes" />
-              }
-              label="Use this address for payment details"
-            />
-          </Grid>
+          
         </Grid>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={(e) => {
-            e.preventDefault();
-            pay();
-          }}
-          className={classes.button}
-        >
-          Proceed to Payments
-        </Button>
+       
       </div>
     </React.Fragment>
   );
 }
 const mapStateToProps = (state) => ({
   cartProducts: state.cart.products,
- authUser:state.sessionState.authUser,
+  authUser: state.sessionState.authUser,
   cartTotal: state.total.data,
 });
-export default connect(mapStateToProps, {
-  
-})(AddressForm);
+export default connect(mapStateToProps, {})(AddressForm);

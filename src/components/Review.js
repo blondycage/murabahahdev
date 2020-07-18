@@ -5,7 +5,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
-
+import { connect } from 'react-redux';
 const products = [
   { name: 'Product 1', desc: 'A nice thing', price: '$9.99' },
   { name: 'Product 2', desc: 'Another thing', price: '$3.45' },
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Review() {
+ function Review({ cartProducts, cartTotal, authUser }) {
   const classes = useStyles();
 
   return (
@@ -42,16 +42,23 @@ export default function Review() {
         Order summary
       </Typography>
       <List style={{display:"flex",flexDirection:'column'}} >
-        {products.map((product) => (
-          <ListItem className={classes.listItem} key={product.name}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+        {cartProducts.map((product) => (
+          <ListItem className={classes.listItem} key={product.title}>
+            <ListItemText primary={product.title} secondary={product.description} />
+
+            <Typography variant="body2">{`NGN ${product.price} x ${product.quantity}`}</Typography>
           </ListItem>
         ))}
         <ListItem className={classes.listItem}>
+          <ListItemText primary="Shipping Fee" />
+          <Typography variant="subtitle1" className={classes.total}>
+       NGN 5000
+          </Typography>
+        </ListItem>
+        <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            $34.06
+         {`NGN${cartTotal.totalPrice +5000}`}
           </Typography>
         </ListItem>
       </List>
@@ -60,27 +67,16 @@ export default function Review() {
           <Typography variant="h6" gutterBottom className={classes.title}>
             Shipping
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+          <Typography gutterBottom>{`${authUser.address.address.firstname} ${authUser.address.address.lastname}`}</Typography>
+          <Typography gutterBottom>{`${authUser.address.address.address} ${authUser.address.address.state} ${authUser.address.address.city}`}</Typography>
         </Grid>
-        <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom className={classes.title}>
-            Payment details
-          </Typography>
-          <Grid container>
-            {payments.map((payment) => (
-              <React.Fragment key={payment.name}>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.name}</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
-                </Grid>
-              </React.Fragment>
-            ))}
-          </Grid>
-        </Grid>
+      
       </Grid>
     </React.Fragment>
   );
-}
+}const mapStateToProps = (state) => ({
+  cartProducts: state.cart.products,
+  authUser: state.sessionState.authUser,
+  cartTotal: state.total.data,
+});
+export default connect(mapStateToProps, {})(Review);

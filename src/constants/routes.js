@@ -10,3 +10,4 @@ export const DOC_UPLOAD = '/docuploader';
 export const ADDPRODUCT = '/addproduct';
 export const PRICING = '/pricing';
 export const CHECKOUT = '/checkout';
+export const REDIRECT = '/confirmation'
