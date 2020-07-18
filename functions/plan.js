@@ -29,7 +29,7 @@ export function handler(event, context, callback) {
   })
     .then((response) => {
       console.log(response.data);
-      data= JSON.parse(response.data);
+     var data= JSON.parse(response.data);
       planid=data.id
       console.log(planid);
       })
