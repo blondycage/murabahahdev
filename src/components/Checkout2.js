@@ -83,10 +83,33 @@ function getStepContent(step) {
  function Checkout({ cartProducts, cartTotal, authUser}) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-
+const [planid,setPlanid]=React.useState("");
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
+  const Pay=()=>{
+    const requestOptions = {
+      method: 'POST',
+  
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        totalamount: cartTotal.totalPrice,
+        user: authUser,
+        products: cartProducts,
+      }),
+    };
+    fetch(
+      'https://boring-yonath-397d65.netlify.app/.netlify/functions/pay',
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        window.location.href = `${data.data.link}`;
+      })
+      .catch((err) => console.log(err));
+  }
 const Placeorder=()=>{
     
   const requestOptions = {
@@ -99,6 +122,7 @@ const Placeorder=()=>{
       totalamount: cartTotal.totalPrice,
       user: authUser,
       products: cartProducts,
+      planid:planid
     }),
   };
   fetch(
@@ -107,7 +131,7 @@ const Placeorder=()=>{
   )
     .then((response) => response.json())
     .then((data) => {
-      window.location.href = `${data.data.link}`;
+      console.log(data);
     })
     .catch((err) => console.log(err));
 }
