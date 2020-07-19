@@ -9,21 +9,32 @@ export function handler(event, context, callback) {
     'Access-Control-Allow-Origin': '*',
   };
   const parsedbody = JSON.parse(event.body);
-  const amount = Number(parsedbody.totalamount) * 0.25 + 5000;
-
+  const amount = (Number(parsedbody.totalamount)*0.25) + 5000;
   const randtx = uuidv1();
-  var planid = '';
-
   axios({
     method: 'post',
 
-    url: 'https://api.flutterwave.com/v3/payment-plans',
+    url: 'https://api.flutterwave.com/v3/payments',
     data: {
-      amount:(Number(parsedbody.totalamount)- (Number(parsedbody.totalamount) * 0.25))/6,
+      tx_ref: `MRBTX- ${randtx}`,
+      amount: amount.toString(),
       currency: 'NGN',
-     name:"murabahah test",
-     interval:"hourly",
-     duration:7
+      redirect_url: 'https://boring-yonath-397d65.netlify.app/confirmation',
+      payment_options: 'card',
+      payment_plan:parsedbody.planid,
+      meta: {
+        consumer_id: parsedbody.user.uid,
+      },
+      customer: {
+        email: parsedbody.user.email,
+        phonenumber: parsedbody.user.number,
+        name: parsedbody.user.username,
+      },
+      customizations: {
+        title: 'Murabahah Payments',
+        description: 'Onetime Pay the price',
+        logo: 'https://assets.piedpiper.com/logo.png',
+      },
     },
     headers,
   })
@@ -37,8 +48,6 @@ export function handler(event, context, callback) {
         },
         body: JSON.stringify(response.data),
       });
-      })
+    })
     .catch((err) => console.log(err));
-
- 
 }

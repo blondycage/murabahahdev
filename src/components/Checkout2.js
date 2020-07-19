@@ -87,7 +87,7 @@ const [planid,setPlanid]=React.useState("");
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
-  const Pay=()=>{
+  const Pay=(planid)=>{
     const requestOptions = {
       method: 'POST',
   
@@ -98,10 +98,11 @@ const [planid,setPlanid]=React.useState("");
         totalamount: cartTotal.totalPrice,
         user: authUser,
         products: cartProducts,
+        planid:planid
       }),
     };
     fetch(
-      'https://boring-yonath-397d65.netlify.app/.netlify/functions/pay',
+      'https://boring-yonath-397d65.netlify.app/.netlify/functions/payplan',
       requestOptions
     )
       .then((response) => response.json())
@@ -132,6 +133,8 @@ const Placeorder=()=>{
     .then((response) => response.json())
     .then((data) => {
       console.log(data.data.id);
+      setPlanid(data.data.id)
+      Pay(data.data.id)
     })
     .catch((err) => console.log(err));
 }
