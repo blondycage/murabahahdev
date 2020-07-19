@@ -33,12 +33,12 @@ function createData(payment, date) {
 var now = moment();
 moment().toString();
 const rows = [
+  createData('first', now.add(1, 'h').toString()),
   createData('second', now.add(1, 'h').toString()),
-  createData('third', now.add(2, 'h').toString()),
-  createData('fourth', now.add(3, 'h').toString()),
-  createData('fifth', now.add(4, 'h').toString()),
-  createData('sixth', now.add(5, 'h').toString()),
-  createData('seventh', now.add(6, 'h').toString()),
+  createData('third', now.add(1, 'h').toString()),
+  createData('fourth', now.add(1, 'h').toString()),
+  createData('fifth', now.add(1, 'h').toString()),
+  createData('sixth', now.add(1, 'h').toString()),
 ];
 
 const useStyles = makeStyles({
