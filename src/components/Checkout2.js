@@ -131,7 +131,7 @@ const Placeorder=()=>{
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      console.log(data.data.id);
     })
     .catch((err) => console.log(err));
 }
