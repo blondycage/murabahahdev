@@ -36,7 +36,7 @@ const Product = ({ product, addProduct }) => {
       onMouseLeave={()=>{console.log("EXIT")}}
     >
       {product.isNew && (
-        <div className="shelf-stopper">Brand New </div>
+        <div className="shelf-stopper" style={{backgroundColor:'#5a10c9'}}>Brand New </div>
       )}
 
     {!product.thumburlbig &&  (<Thumb

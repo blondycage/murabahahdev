@@ -58,10 +58,11 @@ class Shelf extends Component {
         {isLoading && <Spinner />}
        
         <div className="shelf-container">
-       <ShelfHeader productsLength={products.length} />
+      
          
           <ProductList products={products} />
-          <div style={{width:"100%",textAlign:'center'}}><div style={{display:'inline-block'}}><Pagination count={10}  variant="outlined" /></div></div>
+
+    
        
         </div>
      

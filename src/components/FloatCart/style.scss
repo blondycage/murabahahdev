@@ -4,7 +4,7 @@
   right: -450px;
   width: 450px;
   height: 100%;
-  background-color: #1b1a20;
+  background-color: #000000;
   box-sizing: border-box;
 
   transition: right 0.2s;
@@ -37,14 +37,14 @@
     display: inline-block;
     vertical-align: middle;
     margin-right: 15px;
-    background-image: url('../../static/bag-icon.png');
+    background-image: url('../../static/carrito-de-compras.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
 
     &--float-cart-closed {
       position: absolute;
-      background-color: #000;
+      background-color: rgba(255, 255, 255, 0);
       background-size: 50%;
       left: -70px;
       top: -23px;
@@ -264,7 +264,17 @@
   }
 }
 
-
+@media (max-width: 768px) {
+  .float-cart .bag--float-cart-closed {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    background-size: 50%;
+    left: -239px;
+    top: 32px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}}
 /* MAC scrollbar para desktop*/
 @media screen and (min-width: 640px) {
   .float-cart__content::-webkit-scrollbar {
@@ -277,6 +287,7 @@
     border-radius: 4px;
     background-color: #0c0b10;
   }
+  
 }
 
 .float-cart__content {
